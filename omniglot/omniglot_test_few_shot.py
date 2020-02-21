@@ -187,7 +187,7 @@ def main():
 
                 _,predict_labels = torch.max(relations.data,1)
 
-                rewards = [1 if predict_labels[j]==test_labels[j] else 0 for j in range(CLASS_NUM*SAMPLE_NUM_PER_CLASS)]
+                rewards = [1 if predict_labels[j]==test_labels[j].cuda(GPU) else 0 for j in range(CLASS_NUM*SAMPLE_NUM_PER_CLASS)]
 
                 total_rewards += np.sum(rewards)
                 accuracy = np.sum(rewards)/1.0/CLASS_NUM/SAMPLE_NUM_PER_CLASS
